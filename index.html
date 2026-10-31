@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8f5ed">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="CHM 书架">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>CHM 书架</title>
+</head>
+<body>
+  <div id="app">
+    <header id="topbar">
+      <button id="backButton" class="icon-button" aria-label="返回书架" hidden>←</button>
+      <div class="titles">
+        <h1 id="screenTitle">书架</h1>
+        <p id="screenSubtitle" hidden></p>
+      </div>
+      <div id="readerActions" hidden>
+        <button id="prevButton" class="icon-button" aria-label="上一页" disabled>‹</button>
+        <button id="nextButton" class="icon-button" aria-label="下一页" disabled>›</button>
+        <button id="tocButton" class="icon-button" aria-label="目录">☰</button>
+        <button id="searchButton" class="icon-button" aria-label="搜索">⌕</button>
+        <button id="fontButton" class="text-button" aria-label="字号">Aa</button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="shelfScreen" class="screen">
+        <div class="shelf-heading">
+          <h2>书架</h2>
+          <p>导入的 CHM 会保存在这台设备上，下次打开仍在。</p>
+        </div>
+        <button id="importButton" class="primary-button">导入 CHM</button>
+        <div id="importProgress" class="progress-box" hidden>
+          <div class="progress-track"><div id="importProgressBar"></div></div>
+          <p id="importProgressText">正在处理…</p>
+        </div>
+        <div id="shelfError" class="error-box" hidden></div>
+        <div id="bookList" class="book-list"></div>
+      </section>
+
+      <section id="readerScreen" class="screen reader-screen" hidden>
+        <iframe id="readerFrame" title="CHM 阅读页" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+        <div id="readerError" class="reader-error" hidden></div>
+      </section>
+
+      <section id="profileScreen" class="screen profile-screen" hidden>
+        <div class="settings-card">
+          <div class="setting-row">
+            <div>
+              <strong>夜间模式</strong>
+              <p>阅读页和界面一起变深色</p>
+            </div>
+            <label class="switch">
+              <input id="nightToggle" type="checkbox">
+              <span></span>
+            </label>
+          </div>
+        </div>
+        <button id="aboutButton" class="settings-card settings-link">
+          <span>关于</span><span>›</span>
+        </button>
+        <p class="small-note">书只保存在当前浏览器里，不会上传到服务器。</p>
+      </section>
+    </main>
+
+    <nav id="bottomNav">
+      <button id="shelfTab" class="nav-item active">
+        <span class="nav-icon">▥</span><span>书架</span>
+      </button>
+      <button id="profileTab" class="nav-item">
+        <span class="nav-icon">◉</span><span>我的</span>
+      </button>
+    </nav>
+
+    <input id="filePicker" type="file" accept="*/*" hidden>
+
+    <div id="tocPanel" class="panel" hidden>
+      <div class="panel-head"><h2>目录</h2><button class="icon-button" data-close="tocPanel">×</button></div>
+      <div id="tocList" class="toc-list"></div>
+    </div>
+
+    <div id="searchPanel" class="panel" hidden>
+      <div class="panel-head"><h2>全文搜索</h2><button class="icon-button" data-close="searchPanel">×</button></div>
+      <form id="searchForm" class="search-form">
+        <input id="searchInput" type="search" placeholder="关键词" autocomplete="off">
+        <button type="submit" class="primary-button">搜索</button>
+      </form>
+      <div class="search-modes">
+        <button type="button" class="mode-chip active" data-search-mode="title">标题</button>
+        <button type="button" class="mode-chip" data-search-mode="full">全文</button>
+        <span class="small-note">全文模式标题命中优先</span>
+      </div>
+      <div id="searchStatus" class="small-note"></div>
+      <div id="searchResults" class="search-results"></div>
+    </div>
+
+    <div id="fontPanel" class="panel font-panel" hidden>
+      <div class="panel-head"><h2>正文字号</h2><button class="icon-button" data-close="fontPanel">×</button></div>
+      <div class="font-row">
+        <button id="fontMinus" class="text-button">A−</button>
+        <output id="fontValue">100%</output>
+        <button id="fontPlus" class="text-button">A+</button>
+      </div>
+      <input id="fontRange" type="range" min="80" max="160" step="10" value="100">
+      <p class="small-note">调整会立即生效。</p>
+    </div>
+
+    <div id="aboutPanel" class="panel" hidden>
+      <div class="panel-head"><h2>关于</h2><button class="icon-button" data-close="aboutPanel">×</button></div>
+      <p>CHM 书架 · 网页版 v0.1.6-web</p>
+      <p class="small-note">本地解析，支持 GBK / GB18030 / Big5 / UTF-8 目录。解析核心为 chmlib WebAssembly。</p>
+      <button class="primary-button" data-close="aboutPanel">关闭</button>
+    </div>
+
+    <div id="backdrop" class="backdrop" hidden></div>
+    <div id="toast" class="toast" hidden></div>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
