@@ -1,4 +1,4 @@
-const CACHE = 'chm-shelf-v1.0.4';
+const CACHE = 'chm-shelf-v1.0.5';
 const DB_NAME = 'chm-shelf-v1';
 const DB_VERSION = 1;
 const SCOPE = new URL(self.registration.scope).pathname;
@@ -12,9 +12,11 @@ const APP_SHELL = [
   'chm.wasm',
   'legacy-tables.js',
   'manifest.webmanifest',
-  'icons/icon.svg',
-  'icons/icon-192.png',
-  'icons/icon-512.png',
+  'icons/icon-v2.svg',
+  'icons/icon-192-v2.png',
+  'icons/icon-512-v2.png',
+  'icons/icon-maskable-512-v2.png',
+  'icons/apple-touch-icon-v2.png',
 ];
 
 self.addEventListener('install', (event) => {

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="70" y1="30" x2="450" y2="490" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E6B51"/>
+      <stop offset="1" stop-color="#0C3F30"/>
+    </linearGradient>
+    <linearGradient id="leftPage" x1="100" y1="150" x2="250" y2="390" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDF3"/>
+      <stop offset="1" stop-color="#F2E6CB"/>
+    </linearGradient>
+    <linearGradient id="rightPage" x1="270" y1="150" x2="420" y2="390" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF8E7"/>
+      <stop offset="1" stop-color="#EAD9B8"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="330" y1="140" x2="370" y2="260" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F3D08A"/>
+      <stop offset="1" stop-color="#C8933F"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#06291F" flood-opacity=".45"/>
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <circle cx="256" cy="226" r="190" fill="#FFFFFF" opacity=".055"/>
+  <path d="M70 390c92-40 240-42 372 4v48c-130-36-270-34-372 4z" fill="#06291F" opacity=".16"/>
+
+  <g filter="url(#shadow)">
+    <path d="M96 156c56-18 111-13 144 18v218c-34-27-88-32-144-15z" fill="url(#leftPage)"/>
+    <path d="M416 156c-56-18-111-13-144 18v218c34-27 88-32 144-15z" fill="url(#rightPage)"/>
+    <path d="M240 174v218c0 7-6 11-12 8l-10-5c-32-16-70-20-110-12v-218c48-13 94-5 132 9z" fill="#FFFFFF" opacity=".16"/>
+    <path d="M256 174v218" stroke="#0B3528" stroke-width="8" stroke-linecap="round" opacity=".55"/>
+    <path d="M250 174c-4-8-2-18 6-24 8 6 10 16 6 24z" fill="#0B3528" opacity=".5"/>
+
+    <path d="M330 144h30v112l-15-14-15 14z" fill="url(#gold)"/>
+    <path d="M330 144h30v18h-30z" fill="#FFE4A8" opacity=".7"/>
+
+    <g stroke="#6A8473" stroke-linecap="round" stroke-width="8" opacity=".65">
+      <path d="M128 226h82"/>
+      <path d="M128 258h74"/>
+      <path d="M128 290h82"/>
+      <path d="M128 322h58"/>
+      <path d="M302 226h82"/>
+      <path d="M302 258h74"/>
+      <path d="M302 290h82"/>
+      <path d="M302 322h58"/>
+    </g>
+
+    <path d="M96 374c56-17 111-13 144 15 33-28 88-32 176-15" fill="none" stroke="#C7A66B" stroke-width="5" opacity=".65"/>
+  </g>
+</svg>
