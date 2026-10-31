@@ -17,6 +17,7 @@ const dom = {
   readerScreen: document.getElementById('readerScreen'),
   profileScreen: document.getElementById('profileScreen'),
   importButton: document.getElementById('importButton'),
+  importLabel: document.getElementById('importLabel'),
   filePicker: document.getElementById('filePicker'),
   bookList: document.getElementById('bookList'),
   importProgress: document.getElementById('importProgress'),
@@ -288,6 +289,12 @@ async function ensureServiceWorker() {
   }
 }
 
+function setImportBusy(busy) {
+  dom.filePicker.disabled = busy;
+  dom.importButton.classList.toggle('disabled', busy);
+  dom.importLabel.textContent = busy ? '正在处理…' : '导入 CHM';
+}
+
 async function importChm(file) {
   if (!file) return;
   if (!/\.chm$/i.test(file.name)) {
@@ -295,7 +302,7 @@ async function importChm(file) {
     return;
   }
   showShelfError('');
-  dom.importButton.disabled = true;
+  setImportBusy(true);
   updateProgress(0, 100, '正在读取 CHM…');
   let archive = null;
   try {
@@ -354,7 +361,7 @@ async function importChm(file) {
     hideProgress();
   } finally {
     if (archive) archive.close();
-    dom.importButton.disabled = false;
+    setImportBusy(false);
   }
 }
 
@@ -617,7 +624,6 @@ function setNight(value) {
 /* Events                                                                    */
 /* ------------------------------------------------------------------------- */
 
-dom.importButton.addEventListener('click', () => dom.filePicker.click());
 dom.filePicker.addEventListener('change', () => {
   const file = dom.filePicker.files?.[0];
   dom.filePicker.value = '';

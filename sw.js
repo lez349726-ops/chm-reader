@@ -1,4 +1,4 @@
-const CACHE = 'chm-shelf-v1.0.3';
+const CACHE = 'chm-shelf-v1.0.4';
 const DB_NAME = 'chm-shelf-v1';
 const DB_VERSION = 1;
 const SCOPE = new URL(self.registration.scope).pathname;

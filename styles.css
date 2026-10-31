@@ -149,6 +149,27 @@ button { color: inherit; }
 body.night .primary-button { color: #06271b; }
 .primary-button:disabled { opacity: .55; }
 
+.import-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+.import-button input[type="file"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.import-button.disabled {
+  opacity: .55;
+  pointer-events: none;
+}
+
 .progress-box {
   margin-top: 14px;
   padding: 14px;
